@@ -63,36 +63,27 @@ export default function Home() {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Sholat JKT" />
-        <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/591/591607.png" />
+        {/* URL Logo yang kamu berikan diubah jadi apple-touch-icon */}
+        <link rel="apple-touch-icon" href="https://wismakos.melonnode.my.id/favicon.svg" />
         
         <script src="https://cdn.tailwindcss.com"></script>
       </Head>
 
       <style jsx global>{`
-        body {
-          background-color: #020617 !important;
-          margin: 0;
-          padding: 0;
-        }
-        html {
-          background-color: #020617 !important;
-        }
+        body { background-color: #020617 !important; margin: 0; padding: 0; }
+        html { background-color: #020617 !important; }
       `}</style>
 
       <div className="w-full max-w-sm space-y-4 pt-safe">
-        {/* Clock Card */}
         <div className="bg-white/5 backdrop-blur-3xl rounded-[2.5rem] p-8 text-center border border-white/10 shadow-2xl">
           <p className="text-emerald-400 text-xs font-bold uppercase tracking-[0.2em] mb-2">Jakarta & Sekitarnya</p>
           <p className="text-6xl font-black text-white tabular-nums tracking-tighter">{timeStr}</p>
           <p className="text-white/40 text-xs font-medium mt-3">{dateStr}</p>
         </div>
 
-        {/* Next Prayer - Widget Style */}
         {next && jadwal && (
           <div className="bg-emerald-500 rounded-[2rem] p-6 shadow-lg shadow-emerald-500/20 flex items-center justify-between overflow-hidden relative">
-            <div className="absolute -right-4 -top-4 opacity-20 text-7xl select-none">
-                {ICONS[next]}
-            </div>
+            <div className="absolute -right-4 -top-4 opacity-20 text-7xl select-none">{ICONS[next]}</div>
             <div className="relative z-10">
               <p className="text-emerald-950/60 text-[10px] font-black uppercase tracking-widest">Berikutnya</p>
               <p className="text-emerald-950 font-black text-2xl">{LABELS[next]}</p>
@@ -104,7 +95,6 @@ export default function Home() {
           </div>
         )}
 
-        {/* Schedule List */}
         <div className="bg-white/5 backdrop-blur-2xl rounded-[2.5rem] border border-white/10 shadow-2xl overflow-hidden px-2 py-2">
           {jadwal ? SHOLAT.map(s => {
             const isNext = s === next;
@@ -129,14 +119,9 @@ export default function Home() {
           )}
         </div>
 
-        {/* Extra Times */}
         {jadwal && (
           <div className="grid grid-cols-3 gap-3">
-            {[
-                {k: 'imsak', l: 'Imsak'},
-                {k: 'terbit', l: 'Terbit'},
-                {k: 'dhuha', l: 'Dhuha'}
-            ].map(item => (
+            {[ {k: 'imsak', l: 'Imsak'}, {k: 'terbit', l: 'Terbit'}, {k: 'dhuha', l: 'Dhuha'} ].map(item => (
                 <div key={item.k} className="bg-white/5 backdrop-blur-xl rounded-3xl py-4 text-center border border-white/5">
                     <p className="text-white/30 text-[10px] font-black uppercase tracking-tighter mb-1">{item.l}</p>
                     <p className="text-white/80 font-black text-base tabular-nums">{jadwal[item.k]}</p>
